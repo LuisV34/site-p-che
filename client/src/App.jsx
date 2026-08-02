@@ -14,7 +14,7 @@ function Header({ cartCount, onOpenCart }) {
       <div className="header-inner">
         <div className="brand">
           <LogoMark />
-          Hameçon
+          Le Coin des Pêcheurs
         </div>
         <span className="brand-tagline">Tout pour la pêche, à portée de ligne</span>
         <div className="header-actions">
@@ -259,7 +259,7 @@ export default function App() {
         </section>
       </div>
       <footer className="site-footer">
-        Hameçon — boutique de démonstration · paiement sécurisé via Stripe
+        Le Coin des Pêcheurs — boutique de démonstration · paiement sécurisé via Stripe
       </footer>
       {cartOpen && (
         <CartDrawer

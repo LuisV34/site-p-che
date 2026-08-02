@@ -1,4 +1,4 @@
-# Hameçon — boutique en ligne d'articles de pêche
+# Le Coin des Pêcheurs — boutique en ligne d'articles de pêche
 
 Projet de démarrage complet : front-end React (catalogue + panier) et back-end
 Express connecté à **Stripe Checkout** pour le paiement réel.
