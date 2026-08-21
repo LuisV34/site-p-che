@@ -160,6 +160,84 @@ export function CategoryArt({ id }) {
   );
 }
 
+/* ---------- Rating stars ---------- */
+
+function Star({ fill }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true">
+      <path
+        d="M10 1.5 12.4 7 18.3 7.6 13.8 11.6 15.1 17.5 10 14.4 4.9 17.5 6.2 11.6 1.7 7.6 7.6 7 Z"
+        fill={fill ? "var(--brass)" : "none"}
+        stroke="var(--brass)"
+        strokeWidth="1"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function RatingStars({ rating, count }) {
+  if (!rating) return null;
+  const rounded = Math.round(rating);
+  return (
+    <div className="rating-stars">
+      <span className="rating-stars-icons">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <Star key={n} fill={n <= rounded} />
+        ))}
+      </span>
+      {count != null && <span className="rating-count">({count} avis)</span>}
+    </div>
+  );
+}
+
+/* ---------- Wishlist heart ---------- */
+
+export function HeartIcon({ filled }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M12 20.2 C12 20.2 3.5 15.4 3.5 9.4 C3.5 6.4 5.8 4.3 8.4 4.3 C10 4.3 11.3 5.1 12 6.3 C12.7 5.1 14 4.3 15.6 4.3 C18.2 4.3 20.5 6.4 20.5 9.4 C20.5 15.4 12 20.2 12 20.2 Z"
+        fill={filled ? "#B0473F" : "none"}
+        stroke={filled ? "#B0473F" : "currentColor"}
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/* ---------- Reassurance strip icons ---------- */
+
+export function IconTruck() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+      <rect x="2" y="7" width="12" height="9" rx="1" />
+      <path d="M14 10h4l3.5 3.5V16h-7.5z" />
+      <circle cx="7" cy="18.2" r="1.6" />
+      <circle cx="17" cy="18.2" r="1.6" />
+    </svg>
+  );
+}
+
+export function IconShield() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+      <path d="M12 3 19 6 V11 C19 15.5 16 18.8 12 20.5 C8 18.8 5 15.5 5 11 V6 Z" strokeLinejoin="round" />
+      <path d="M8.7 12 11 14.3 15.3 9.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function IconRotate() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+      <path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3" strokeLinecap="round" />
+      <path d="M18 3v4.2h-4.2M6 21v-4.2h4.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 /* ---------- Hero background scene ---------- */
 
 export function HeroScene() {

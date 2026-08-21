@@ -1,6 +1,39 @@
 import { useEffect, useMemo, useState } from "react";
 import { CATEGORIES, PRODUCTS } from "./data/products";
-import { LogoMark, CategoryIcon, CategoryArt, HeroScene } from "./components/visuals";
+import {
+  LogoMark,
+  CategoryIcon,
+  CategoryArt,
+  HeroScene,
+  RatingStars,
+  HeartIcon,
+  IconTruck,
+  IconShield,
+  IconRotate,
+} from "./components/visuals";
+
+const WISHLIST_KEY = "hamecon-wishlist";
+
+function useWishlist() {
+  const [ids, setIds] = useState(() => {
+    try {
+      return new Set(JSON.parse(localStorage.getItem(WISHLIST_KEY) || "[]"));
+    } catch {
+      return new Set();
+    }
+  });
+
+  function toggle(id) {
+    setIds((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      localStorage.setItem(WISHLIST_KEY, JSON.stringify([...next]));
+      return next;
+    });
+  }
+
+  return { isWishlisted: (id) => ids.has(id), toggle };
+}
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
@@ -12,6 +45,26 @@ function productImages(product) {
   if (product.photos?.length) return product.photos;
   if (product.photo) return [product.photo];
   return [];
+}
+
+function discountPercent(product) {
+  if (!product.compareAtPrice || product.compareAtPrice <= product.price) return null;
+  return Math.round((1 - product.price / product.compareAtPrice) * 100);
+}
+
+function PriceBlock({ product, className = "" }) {
+  const discount = discountPercent(product);
+  return (
+    <span className={`price-block ${className}`}>
+      <span className="product-price">{formatPrice(product.price)}</span>
+      {discount && (
+        <>
+          <span className="price-compare">{formatPrice(product.compareAtPrice)}</span>
+          <span className="price-discount">-{discount}%</span>
+        </>
+      )}
+    </span>
+  );
 }
 
 function Header({ cartCount, onOpenCart }) {
@@ -78,7 +131,7 @@ function CategoryRail({ active, onSelect }) {
   );
 }
 
-function ProductCard({ product, onAdd, onOpen }) {
+function ProductCard({ product, onAdd, onOpen, wishlist }) {
   const images = productImages(product);
   return (
     <div
@@ -89,15 +142,26 @@ function ProductCard({ product, onAdd, onOpen }) {
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onOpen(product)}
     >
       <span className="product-tag">{product.tag}</span>
+      <button
+        className="wishlist-button"
+        aria-label="Ajouter aux favoris"
+        onClick={(e) => {
+          e.stopPropagation();
+          wishlist.toggle(product.id);
+        }}
+      >
+        <HeartIcon filled={wishlist.isWishlisted(product.id)} />
+      </button>
       {images[0] ? (
         <img className="product-photo" src={images[0]} alt={product.name} />
       ) : (
         <CategoryArt id={product.category} />
       )}
       <h3 className="product-name">{product.name}</h3>
+      <RatingStars rating={product.rating} count={product.reviewCount} />
       <p className="product-desc">{product.description}</p>
       <div className="product-footer">
-        <span className="product-price">{formatPrice(product.price)}</span>
+        <PriceBlock product={product} />
         <button
           className="add-button"
           onClick={(e) => {
@@ -112,12 +176,14 @@ function ProductCard({ product, onAdd, onOpen }) {
   );
 }
 
-function ProductModal({ product, onClose, onAdd }) {
+function ProductModal({ product, onClose, onAdd, wishlist }) {
   const images = productImages(product);
   const [activeImage, setActiveImage] = useState(0);
+  const [tab, setTab] = useState("description");
 
   useEffect(() => {
     setActiveImage(0);
+    setTab("description");
   }, [product]);
 
   useEffect(() => {
@@ -130,6 +196,12 @@ function ProductModal({ product, onClose, onAdd }) {
 
   if (!product) return null;
 
+  const tabs = [
+    { id: "description", label: "Description" },
+    ...(product.specs ? [{ id: "specs", label: "Caractéristiques" }] : []),
+    { id: "avis", label: `Avis${product.reviews?.length ? ` (${product.reviews.length})` : ""}` },
+  ];
+
   return (
     <>
       <div className="modal-overlay" onClick={onClose} />
@@ -140,6 +212,13 @@ function ProductModal({ product, onClose, onAdd }) {
         <div className="product-modal-body">
           <div className="product-modal-gallery">
             <div className="product-modal-main-image">
+              <button
+                className="wishlist-button wishlist-button-modal"
+                aria-label="Ajouter aux favoris"
+                onClick={() => wishlist.toggle(product.id)}
+              >
+                <HeartIcon filled={wishlist.isWishlisted(product.id)} />
+              </button>
               {images.length ? (
                 <img src={images[activeImage]} alt={product.name} />
               ) : (
@@ -163,9 +242,26 @@ function ProductModal({ product, onClose, onAdd }) {
           <div className="product-modal-info">
             <span className="product-tag">{product.tag}</span>
             <h2>{product.name}</h2>
-            <div className="product-modal-price">{formatPrice(product.price)}</div>
-            <p className="product-modal-desc">{product.description}</p>
-            {product.specs && (
+            <RatingStars rating={product.rating} count={product.reviewCount} />
+            <PriceBlock product={product} className="price-block-large" />
+
+            <div className="modal-tabs">
+              {tabs.map((t) => (
+                <button
+                  key={t.id}
+                  className={`modal-tab ${tab === t.id ? "active" : ""}`}
+                  onClick={() => setTab(t.id)}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
+            {tab === "description" && (
+              <p className="product-modal-desc">{product.description}</p>
+            )}
+
+            {tab === "specs" && product.specs && (
               <dl className="product-modal-specs">
                 {Object.entries(product.specs).map(([label, value]) => (
                   <div className="spec-row" key={label}>
@@ -175,6 +271,25 @@ function ProductModal({ product, onClose, onAdd }) {
                 ))}
               </dl>
             )}
+
+            {tab === "avis" && (
+              <div className="reviews-list">
+                {product.reviews?.length ? (
+                  product.reviews.map((r, i) => (
+                    <div className="review-item" key={i}>
+                      <div className="review-head">
+                        <RatingStars rating={r.rating} />
+                        <span className="review-author">{r.author}</span>
+                      </div>
+                      <p>{r.text}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="reviews-empty">Pas encore d'avis pour ce produit.</p>
+                )}
+              </div>
+            )}
+
             <button
               className="add-button add-button-large"
               onClick={() => {
@@ -184,6 +299,21 @@ function ProductModal({ product, onClose, onAdd }) {
             >
               Ajouter au panier
             </button>
+
+            <div className="reassurance-strip">
+              <div>
+                <IconTruck />
+                Livraison sous 48h
+              </div>
+              <div>
+                <IconShield />
+                Paiement sécurisé
+              </div>
+              <div>
+                <IconRotate />
+                Retour sous 30 jours
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -299,6 +429,7 @@ export default function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const wishlist = useWishlist();
 
   const path = window.location.pathname;
   if (path === "/success") return <StatusPage kind="success" />;
@@ -357,6 +488,7 @@ export default function App() {
                 product={p}
                 onAdd={addToCart}
                 onOpen={setSelectedProduct}
+                wishlist={wishlist}
               />
             ))}
           </div>
@@ -378,6 +510,7 @@ export default function App() {
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
           onAdd={addToCart}
+          wishlist={wishlist}
         />
       )}
     </>

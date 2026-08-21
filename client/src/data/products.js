@@ -110,6 +110,9 @@ export const PRODUCTS = [
     name: "Gilet de pêche Bassdash",
     category: "vetements",
     price: 39.9,
+    compareAtPrice: 54.9,
+    rating: 4.8,
+    reviewCount: 132,
     tag: "Multi-poches",
     description:
       "Gilet respirant et réglable, nombreuses poches intérieures et extérieures, dos en maille pour rester au frais.",
@@ -127,5 +130,17 @@ export const PRODUCTS = [
       "Dos": "Maille aérée anti-transpiration",
       "Origine": "Fabricant Bassdash",
     },
+    reviews: [
+      {
+        author: "Marc L.",
+        rating: 5,
+        text: "Très bonne surprise, les poches sont bien pensées et le dos en maille respire vraiment bien en été.",
+      },
+      {
+        author: "Julie D.",
+        rating: 4.5,
+        text: "Bon rapport qualité/prix, réglable facilement. Un coloris un peu plus clair aurait été bien pour l'été.",
+      },
+    ],
   },
 ];
