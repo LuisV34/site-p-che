@@ -14,4 +14,5 @@ export const PRODUCTS = [
   { id: "waders-respirants", name: "Waders respirants", price: 119.0 },
   { id: "veste-impermeable", name: "Veste imperméable multipoches", price: 79.9 },
   { id: "casquette-anti-uv", name: "Casquette anti-UV", price: 16.9 },
+  { id: "gilet-peche-bassdash", name: "Gilet de pêche Bassdash", price: 39.9 },
 ];

@@ -105,4 +105,13 @@ export const PRODUCTS = [
     tag: "Été",
     description: "Protection solaire, séchage rapide, visière longue.",
   },
+  {
+    id: "gilet-peche-bassdash",
+    name: "Gilet de pêche Bassdash",
+    category: "vetements",
+    price: 39.9,
+    tag: "Multi-poches",
+    description:
+      "Gilet respirant et réglable, nombreuses poches intérieures et extérieures, dos en maille pour rester au frais.",
+  },
 ];
