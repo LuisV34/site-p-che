@@ -113,7 +113,19 @@ export const PRODUCTS = [
     tag: "Multi-poches",
     description:
       "Gilet respirant et réglable, nombreuses poches intérieures et extérieures, dos en maille pour rester au frais.",
-    photo:
+    photos: [
       "https://ae-pic-a1.aliexpress-media.com/kf/S471a6ad55a03460c9523959d2134d6e1f.jpg_960x960q75.jpg_.avif",
+      "https://ae-pic-a1.aliexpress-media.com/kf/S028fb4030d8649129d2c7bc613393c0d2.jpg_960x960q75.jpg_.avif",
+      "https://ae-pic-a1.aliexpress-media.com/kf/S5c99196dcc0c4b97a5751f8fefa0f621l.jpg_960x960q75.jpg_.avif",
+      "https://ae-pic-a1.aliexpress-media.com/kf/S1959907d08ce4dc8ae5507112e75b207F.jpg_960x960q75.jpg_.avif",
+      "https://ae-pic-a1.aliexpress-media.com/kf/S649e874f8bd646e682161b8e362f4aeeT.jpg_960x960q75.jpg_.avif",
+    ],
+    specs: {
+      "Matière": "Polyester respirant",
+      "Coloris disponibles": "Vert armée, bleu, gris, rouge",
+      "Réglages": "Bretelles épaules et taille ajustables",
+      "Dos": "Maille aérée anti-transpiration",
+      "Origine": "Fabricant Bassdash",
+    },
   },
 ];

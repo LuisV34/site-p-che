@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CATEGORIES, PRODUCTS } from "./data/products";
 import { LogoMark, CategoryIcon, CategoryArt, HeroScene } from "./components/visuals";
 
@@ -6,6 +6,12 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
 function formatPrice(value) {
   return value.toLocaleString("fr-FR", { style: "currency", currency: "EUR" });
+}
+
+function productImages(product) {
+  if (product.photos?.length) return product.photos;
+  if (product.photo) return [product.photo];
+  return [];
 }
 
 function Header({ cartCount, onOpenCart }) {
@@ -72,12 +78,19 @@ function CategoryRail({ active, onSelect }) {
   );
 }
 
-function ProductCard({ product, onAdd }) {
+function ProductCard({ product, onAdd, onOpen }) {
+  const images = productImages(product);
   return (
-    <div className="product-card">
+    <div
+      className="product-card"
+      onClick={() => onOpen(product)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onOpen(product)}
+    >
       <span className="product-tag">{product.tag}</span>
-      {product.photo ? (
-        <img className="product-photo" src={product.photo} alt={product.name} />
+      {images[0] ? (
+        <img className="product-photo" src={images[0]} alt={product.name} />
       ) : (
         <CategoryArt id={product.category} />
       )}
@@ -85,11 +98,96 @@ function ProductCard({ product, onAdd }) {
       <p className="product-desc">{product.description}</p>
       <div className="product-footer">
         <span className="product-price">{formatPrice(product.price)}</span>
-        <button className="add-button" onClick={() => onAdd(product)}>
+        <button
+          className="add-button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onAdd(product);
+          }}
+        >
           Ajouter
         </button>
       </div>
     </div>
+  );
+}
+
+function ProductModal({ product, onClose, onAdd }) {
+  const images = productImages(product);
+  const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    setActiveImage(0);
+  }, [product]);
+
+  useEffect(() => {
+    function handleKey(e) {
+      if (e.key === "Escape") onClose();
+    }
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [onClose]);
+
+  if (!product) return null;
+
+  return (
+    <>
+      <div className="modal-overlay" onClick={onClose} />
+      <div className="product-modal" role="dialog" aria-modal="true">
+        <button className="modal-close" onClick={onClose} aria-label="Fermer">
+          ×
+        </button>
+        <div className="product-modal-body">
+          <div className="product-modal-gallery">
+            <div className="product-modal-main-image">
+              {images.length ? (
+                <img src={images[activeImage]} alt={product.name} />
+              ) : (
+                <CategoryArt id={product.category} />
+              )}
+            </div>
+            {images.length > 1 && (
+              <div className="product-modal-thumbs">
+                {images.map((src, i) => (
+                  <button
+                    key={src}
+                    className={`product-modal-thumb ${i === activeImage ? "active" : ""}`}
+                    onClick={() => setActiveImage(i)}
+                  >
+                    <img src={src} alt={`${product.name} — vue ${i + 1}`} />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="product-modal-info">
+            <span className="product-tag">{product.tag}</span>
+            <h2>{product.name}</h2>
+            <div className="product-modal-price">{formatPrice(product.price)}</div>
+            <p className="product-modal-desc">{product.description}</p>
+            {product.specs && (
+              <dl className="product-modal-specs">
+                {Object.entries(product.specs).map(([label, value]) => (
+                  <div className="spec-row" key={label}>
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            <button
+              className="add-button add-button-large"
+              onClick={() => {
+                onAdd(product);
+                onClose();
+              }}
+            >
+              Ajouter au panier
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -140,8 +238,8 @@ function CartDrawer({ items, onClose, onQtyChange, onRemove }) {
           {items.length === 0 && <div className="cart-empty">Ton panier est vide.</div>}
           {items.map((item) => (
             <div className="cart-item" key={item.id}>
-              {item.photo ? (
-                <img className="cart-item-photo" src={item.photo} alt={item.name} />
+              {productImages(item)[0] ? (
+                <img className="cart-item-photo" src={productImages(item)[0]} alt={item.name} />
               ) : (
                 <div className="cart-item-icon">
                   <CategoryIcon id={item.category} size={20} />
@@ -200,6 +298,7 @@ export default function App() {
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const path = window.location.pathname;
   if (path === "/success") return <StatusPage kind="success" />;
@@ -253,7 +352,12 @@ export default function App() {
           </div>
           <div className="product-grid">
             {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} onAdd={addToCart} />
+              <ProductCard
+                key={p.id}
+                product={p}
+                onAdd={addToCart}
+                onOpen={setSelectedProduct}
+              />
             ))}
           </div>
         </section>
@@ -267,6 +371,13 @@ export default function App() {
           onClose={() => setCartOpen(false)}
           onQtyChange={changeQty}
           onRemove={removeItem}
+        />
+      )}
+      {selectedProduct && (
+        <ProductModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+          onAdd={addToCart}
         />
       )}
     </>
