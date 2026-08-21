@@ -113,5 +113,7 @@ export const PRODUCTS = [
     tag: "Multi-poches",
     description:
       "Gilet respirant et réglable, nombreuses poches intérieures et extérieures, dos en maille pour rester au frais.",
+    photo:
+      "https://ae-pic-a1.aliexpress-media.com/kf/S471a6ad55a03460c9523959d2134d6e1f.jpg_960x960q75.jpg_.avif",
   },
 ];
