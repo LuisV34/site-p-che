@@ -31,35 +31,6 @@ export function LogoMark({ size = 30 }) {
 
 /* ---------- Category line icons (for pills / nav) ---------- */
 
-function IconRod() {
-  return (
-    <>
-      <path d="M3 20 L19 4" strokeLinecap="round" />
-      <path d="M6.5 16.5 L8 15" strokeLinecap="round" strokeWidth="1.1" />
-      <path d="M10 13 L11.3 11.7" strokeLinecap="round" strokeWidth="1.1" />
-      <path d="M13.3 9.7 L14.6 8.4" strokeLinecap="round" strokeWidth="1.1" />
-      <path
-        d="M19 4 C21.5 4.8, 21.5 8, 19.2 9"
-        strokeLinecap="round"
-        strokeWidth="1.1"
-      />
-    </>
-  );
-}
-
-function IconReel() {
-  return (
-    <>
-      <circle cx="12" cy="11" r="5.5" />
-      <path d="M12 6.5 V4.2" strokeLinecap="round" />
-      <path d="M15.5 8.2 L17 6.8" strokeLinecap="round" />
-      <path d="M9.5 13.8 L8 15.2" strokeLinecap="round" strokeWidth="1.1" />
-      <path d="M12 20 V17.5" strokeLinecap="round" />
-      <path d="M9.2 20 H14.8" strokeLinecap="round" />
-    </>
-  );
-}
-
 function IconLure() {
   return (
     <>
@@ -98,10 +69,7 @@ function IconJacket() {
 }
 
 const ICONS = {
-  cannes: IconRod,
-  moulinets: IconReel,
   leurres: IconLure,
-  accessoires: IconTacklebox,
   vetements: IconJacket,
 };
 

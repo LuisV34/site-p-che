@@ -1,46 +1,10 @@
 // Catalogue générique — à remplacer par tes vrais produits / une base de données
 export const CATEGORIES = [
-  { id: "cannes", label: "Cannes à pêche" },
-  { id: "moulinets", label: "Moulinets" },
   { id: "leurres", label: "Leurres & appâts" },
-  { id: "accessoires", label: "Accessoires" },
   { id: "vetements", label: "Vêtements & bottes" },
 ];
 
 export const PRODUCTS = [
-  {
-    id: "canne-riviere-240",
-    name: "Canne Rivière 2,40 m",
-    category: "cannes",
-    price: 89.9,
-    tag: "Polyvalente",
-    description:
-      "Canne télescopique carbone, idéale pour la pêche au coup en rivière comme en étang.",
-  },
-  {
-    id: "canne-carnassier-300",
-    name: "Canne Carnassier 3,00 m",
-    category: "cannes",
-    price: 149.0,
-    tag: "Technique",
-    description: "Puissance et sensibilité pour le brochet, le sandre et le silure.",
-  },
-  {
-    id: "moulinet-spinning-3000",
-    name: "Moulinet Spinning 3000",
-    category: "moulinets",
-    price: 64.5,
-    tag: "Best-seller",
-    description: "5 roulements, frein progressif, parfait pour débuter comme pour confirmer.",
-  },
-  {
-    id: "moulinet-casting-pro",
-    name: "Moulinet Casting Pro",
-    category: "moulinets",
-    price: 129.0,
-    tag: "Précision",
-    description: "Frein magnétique réglable pour un lancer précis, même par vent traversier.",
-  },
   {
     id: "leurres-souples-x12",
     name: "Boîte de 12 leurres souples",
@@ -56,30 +20,6 @@ export const PRODUCTS = [
     price: 6.5,
     tag: "Classique",
     description: "Le leurre increvable pour la truite et la perche.",
-  },
-  {
-    id: "epuisette-pliable",
-    name: "Épuisette pliable",
-    category: "accessoires",
-    price: 34.9,
-    tag: "Pratique",
-    description: "Manche télescopique, tête pliante, se range dans n'importe quel sac.",
-  },
-  {
-    id: "boite-hamecons-assortis",
-    name: "Boîte d'hameçons assortis",
-    category: "accessoires",
-    price: 9.9,
-    tag: "Indispensable",
-    description: "200 hameçons, 8 tailles, compartiments étanches.",
-  },
-  {
-    id: "siege-pliant",
-    name: "Siège pliant de bord d'eau",
-    category: "accessoires",
-    price: 44.0,
-    tag: "Confort",
-    description: "Assise réglable, poches de rangement, pieds ajustables sur terrain inégal.",
   },
   {
     id: "waders-respirants",
