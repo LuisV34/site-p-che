@@ -83,4 +83,26 @@ export const PRODUCTS = [
       },
     ],
   },
+  {
+    id: "gilet-peche-bassdash-bleu",
+    name: "Gilet de pêche Bassdash — Bleu",
+    category: "vetements",
+    price: 39.9,
+    compareAtPrice: 54.9,
+    rating: 4.8,
+    reviewCount: 132,
+    tag: "Multi-poches",
+    description:
+      "Même gilet respirant et réglable en coloris bleu, nombreuses poches intérieures et extérieures, dos en maille pour rester au frais.",
+    photos: [
+      "https://ae-pic-a1.aliexpress-media.com/kf/S7eac5fe8945b41e09660eb3e3bdc35adW.jpg_960x960q75.jpg_.avif",
+    ],
+    specs: {
+      "Matière": "Polyester respirant",
+      "Coloris": "Bleu",
+      "Réglages": "Bretelles épaules et taille ajustables",
+      "Dos": "Maille aérée anti-transpiration",
+      "Origine": "Fabricant Bassdash",
+    },
+  },
 ];
