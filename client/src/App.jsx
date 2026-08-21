@@ -10,6 +10,7 @@ import {
   IconTruck,
   IconShield,
   IconRotate,
+  IconHeadset,
 } from "./components/visuals";
 
 const WISHLIST_KEY = "hamecon-wishlist";
@@ -96,15 +97,42 @@ function Hero() {
           Chaque partie de pêche <em>commence</em> par le bon matériel.
         </h1>
         <p>
-          Cannes, moulinets, leurres et accessoires sélectionnés pour les
-          pêcheurs du dimanche comme pour les techniciens du carnassier.
-          Livraison sous 48h.
+          Leurres et vêtements techniques sélectionnés pour les pêcheurs du
+          dimanche comme pour les techniciens du carnassier. Livraison sous 48h.
         </p>
         <a href="#catalogue" className="hero-cta">
           Voir le catalogue →
         </a>
       </div>
     </section>
+  );
+}
+
+function TrustBar() {
+  return (
+    <div className="trust-bar">
+      <div>
+        <IconTruck />
+        <div>
+          <strong>Livraison rapide</strong>
+          <span>Expédié sous 48h</span>
+        </div>
+      </div>
+      <div>
+        <IconShield />
+        <div>
+          <strong>Paiement sécurisé</strong>
+          <span>100% sécurisé via Stripe</span>
+        </div>
+      </div>
+      <div>
+        <IconHeadset />
+        <div>
+          <strong>Service client</strong>
+          <span>Réponse sous 24h</span>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -474,6 +502,7 @@ export default function App() {
     <>
       <Header cartCount={cartCount} onOpenCart={() => setCartOpen(true)} />
       <Hero />
+      <TrustBar />
       <div id="catalogue">
         <CategoryRail active={activeCategory} onSelect={setActiveCategory} />
         <section className="catalog">

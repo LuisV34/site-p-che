@@ -6,25 +6,38 @@ export function LogoMark({ size = 30 }) {
     <svg
       width={size}
       height={size}
-      viewBox="0 0 40 40"
+      viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <circle cx="20" cy="20" r="19" stroke="#DBA95A" strokeOpacity="0.4" />
-      <path
-        d="M20 8 V21"
-        stroke="#F7F4EC"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M20 21 C20 27, 14 26, 14.5 21.5 C15 17.5, 20.5 18, 20 22.5"
-        stroke="#DBA95A"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <circle cx="20" cy="8" r="2.4" fill="none" stroke="#F7F4EC" strokeWidth="1.4" />
+      <g transform="translate(50,50)">
+        <circle r="49" stroke="#5EC8D4" strokeOpacity="0.5" />
+        <path
+          d="M -22 0 C -16 -15 16 -15 26 0 C 16 15 -16 15 -22 0 Z"
+          fill="#5EC8D4"
+        />
+        <path d="M -22 0 L -34 -11 C -30 -4 -30 4 -34 11 Z" fill="#5EC8D4" />
+        <circle cx="15" cy="-5" r="2" fill="#164A5A" />
+        <path
+          d="M4 -10 C1 -4 1 4 4 10"
+          stroke="#164A5A"
+          strokeOpacity="0.35"
+          strokeWidth="1.4"
+        />
+        <path
+          d="M -34 24 C -20 18 -6 28 8 22 C 20 17 32 26 36 22"
+          stroke="#FFFFFF"
+          strokeOpacity="0.3"
+          strokeWidth="2"
+        />
+        <path
+          d="M -34 31 C -20 25 -6 35 8 29 C 20 24 32 33 36 29"
+          stroke="#FFFFFF"
+          strokeOpacity="0.16"
+          strokeWidth="2"
+        />
+      </g>
     </svg>
   );
 }
@@ -197,6 +210,17 @@ export function IconShield() {
   );
 }
 
+export function IconHeadset() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+      <path d="M4 13v-1a8 8 0 0 1 16 0v1" strokeLinecap="round" />
+      <rect x="2.5" y="13" width="4" height="6" rx="1.5" />
+      <rect x="17.5" y="13" width="4" height="6" rx="1.5" />
+      <path d="M19.5 19.5v1a2 2 0 0 1-2 2h-3.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function IconRotate() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
@@ -220,36 +244,36 @@ export function HeroScene() {
       <circle cx="540" cy="70" r="46" fill="url(#sunGlow)" />
       <defs>
         <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#DBA95A" stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#DBA95A" stopOpacity="0" />
+          <stop offset="0%" stopColor="#5EC8D4" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#5EC8D4" stopOpacity="0" />
         </radialGradient>
       </defs>
       <path
         d="M0 60 C 220 40, 380 160, 430 300 C 460 380, 520 420, 620 430"
-        stroke="#DBA95A"
+        stroke="#5EC8D4"
         strokeWidth="1.5"
         strokeOpacity="0.7"
       />
       <g opacity="0.8">
         <path
           d="M556 328 C 572 316, 596 316, 610 326 C 598 320, 582 322, 570 332 C 582 328, 596 330, 606 340 C 590 336, 574 336, 562 344 Z"
-          fill="#4C7A6E"
+          fill="#8BCFC3"
           fillOpacity="0.5"
         />
-        <path d="M556 328 L546 322" stroke="#4C7A6E" strokeOpacity="0.5" strokeLinecap="round" />
+        <path d="M556 328 L546 322" stroke="#8BCFC3" strokeOpacity="0.5" strokeLinecap="round" />
       </g>
-      <circle cx="620" cy="430" r="5" fill="#C08A34" />
-      <circle cx="620" cy="430" r="10" fill="none" stroke="#C08A34" strokeOpacity="0.4" />
-      <circle cx="620" cy="430" r="18" fill="none" stroke="#C08A34" strokeOpacity="0.22" />
+      <circle cx="620" cy="430" r="5" fill="#20AEB5" />
+      <circle cx="620" cy="430" r="10" fill="none" stroke="#20AEB5" strokeOpacity="0.4" />
+      <circle cx="620" cy="430" r="18" fill="none" stroke="#20AEB5" strokeOpacity="0.22" />
       <path
         d="M20 440 C 140 420, 260 452, 380 434 C 460 422, 540 440, 640 424"
-        stroke="#F7F4EC"
+        stroke="#FFFFFF"
         strokeOpacity="0.08"
         strokeWidth="1"
       />
       <path
         d="M-20 468 C 110 448, 240 478, 370 460 C 460 448, 550 466, 660 450"
-        stroke="#F7F4EC"
+        stroke="#FFFFFF"
         strokeOpacity="0.06"
         strokeWidth="1"
       />

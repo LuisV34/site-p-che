@@ -1,20 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600&display=swap");
 
 :root {
-  --ink: #0f2a2e;
-  --ink-light: #163a3f;
-  --paper: #ede6d6;
-  --paper-light: #f7f4ea;
-  --brass: #c08a34;
-  --brass-light: #dba95a;
-  --river: #4c7a6e;
-  --white: #f7f4ec;
-  --line: rgba(247, 244, 236, 0.16);
-  --line-dark: rgba(15, 42, 46, 0.14);
+  --ink: #164a5a;
+  --ink-light: #1b5b70;
+  --paper: #e6f4f6;
+  --paper-light: #f5fbfc;
+  --brass: #20aeb5;
+  --brass-light: #5ec8d4;
+  --river: #66838b;
+  --mint: #8bcfc3;
+  --white: #ffffff;
+  --line: rgba(255, 255, 255, 0.18);
+  --line-dark: rgba(22, 74, 90, 0.12);
 
-  --font-display: "Fraunces", serif;
-  --font-body: "Work Sans", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "Inter", sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -70,7 +71,7 @@ button {
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(247, 244, 236, 0.55);
+  color: rgba(255, 255, 255, 0.55);
   display: none;
 }
 
@@ -88,7 +89,7 @@ button {
   background: var(--brass);
   color: var(--ink);
   border: none;
-  border-radius: 3px;
+  border-radius: 8px;
   padding: 10px 16px;
   font-weight: 600;
   font-size: 14px;
@@ -156,7 +157,7 @@ button {
   max-width: 480px;
   font-size: 17px;
   line-height: 1.6;
-  color: rgba(247, 244, 236, 0.78);
+  color: rgba(255, 255, 255, 0.78);
   margin: 0 0 32px;
 }
 
@@ -170,7 +171,7 @@ button {
   padding: 14px 24px;
   font-weight: 600;
   font-size: 15px;
-  border-radius: 3px;
+  border-radius: 8px;
   transition: transform 0.15s ease, background 0.15s ease;
 }
 
@@ -184,6 +185,37 @@ button {
   width: 640px;
   opacity: 0.9;
   pointer-events: none;
+}
+
+/* ---------- Trust bar ---------- */
+.trust-bar {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 28px 4px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.trust-bar > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--brass);
+}
+
+.trust-bar strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.trust-bar span {
+  display: block;
+  font-size: 12.5px;
+  color: rgba(22, 74, 90, 0.6);
 }
 
 /* ---------- Category rail ---------- */
@@ -257,7 +289,7 @@ button {
 .product-card {
   background: var(--paper);
   border: 1px solid var(--line-dark);
-  border-radius: 4px;
+  border-radius: 12px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -281,7 +313,7 @@ button {
   height: 30px;
   border-radius: 50%;
   border: 1px solid var(--line-dark);
-  background: rgba(247, 244, 236, 0.9);
+  background: rgba(255, 255, 255, 0.9);
   color: var(--ink);
   display: flex;
   align-items: center;
@@ -303,7 +335,7 @@ button {
 .rating-count {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: rgba(15, 42, 46, 0.55);
+  color: rgba(22, 74, 90, 0.55);
 }
 
 /* ---------- Price with discount ---------- */
@@ -317,7 +349,7 @@ button {
 .price-compare {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: rgba(15, 42, 46, 0.45);
+  color: rgba(22, 74, 90, 0.45);
   text-decoration: line-through;
 }
 
@@ -329,7 +361,7 @@ button {
   background: #b0473f;
   color: var(--white);
   padding: 2px 6px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .price-block-large .product-price { font-size: 22px; }
@@ -349,7 +381,7 @@ button {
   background: var(--ink);
   color: var(--brass-light);
   padding: 4px 8px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .product-art {
@@ -393,7 +425,7 @@ button {
 
 .product-desc {
   font-size: 13.5px;
-  color: rgba(15, 42, 46, 0.68);
+  color: rgba(22, 74, 90, 0.68);
   line-height: 1.5;
   flex-grow: 1;
 }
@@ -417,7 +449,7 @@ button {
   color: var(--white);
   border: none;
   padding: 8px 14px;
-  border-radius: 3px;
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 500;
   transition: background 0.15s ease;
@@ -429,7 +461,7 @@ button {
 .cart-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 42, 46, 0.4);
+  background: rgba(22, 74, 90, 0.4);
   z-index: 30;
 }
 
@@ -443,7 +475,7 @@ button {
   z-index: 31;
   display: flex;
   flex-direction: column;
-  box-shadow: -8px 0 30px rgba(15, 42, 46, 0.25);
+  box-shadow: -8px 0 30px rgba(22, 74, 90, 0.25);
 }
 
 .cart-header {
@@ -476,7 +508,7 @@ button {
 .cart-empty {
   padding: 40px 0;
   text-align: center;
-  color: rgba(15, 42, 46, 0.55);
+  color: rgba(22, 74, 90, 0.55);
   font-size: 14px;
 }
 
@@ -491,7 +523,7 @@ button {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
-  border-radius: 4px;
+  border-radius: 8px;
   background: var(--paper);
   display: flex;
   align-items: center;
@@ -503,7 +535,7 @@ button {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
-  border-radius: 4px;
+  border-radius: 8px;
   object-fit: cover;
 }
 
@@ -527,7 +559,7 @@ button {
 .qty-controls button {
   width: 24px;
   height: 24px;
-  border-radius: 3px;
+  border-radius: 6px;
   border: 1px solid var(--line-dark);
   background: var(--paper);
   font-size: 14px;
@@ -539,7 +571,7 @@ button {
   background: none;
   border: none;
   font-size: 12px;
-  color: rgba(15, 42, 46, 0.45);
+  color: rgba(22, 74, 90, 0.45);
   text-decoration: underline;
 }
 
@@ -563,7 +595,7 @@ button {
   color: var(--ink);
   border: none;
   padding: 14px;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
   transition: background 0.15s ease;
@@ -581,7 +613,7 @@ button {
 /* ---------- Footer ---------- */
 .site-footer {
   background: var(--ink);
-  color: rgba(247, 244, 236, 0.6);
+  color: rgba(255, 255, 255, 0.6);
   padding: 40px 28px;
   font-size: 13px;
   text-align: center;
@@ -592,7 +624,7 @@ button {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 42, 46, 0.5);
+  background: rgba(22, 74, 90, 0.5);
   z-index: 40;
 }
 
@@ -606,8 +638,8 @@ button {
   max-height: calc(100vh - 64px);
   overflow-y: auto;
   background: var(--paper-light);
-  border-radius: 6px;
-  box-shadow: 0 20px 60px rgba(15, 42, 46, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(22, 74, 90, 0.35);
 }
 
 .modal-close {
@@ -645,7 +677,7 @@ button {
   position: relative;
   background: var(--paper);
   border: 1px solid var(--line-dark);
-  border-radius: 4px;
+  border-radius: 10px;
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
@@ -674,7 +706,7 @@ button {
   width: 56px;
   height: 56px;
   padding: 0;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 2px solid var(--line-dark);
   background: var(--paper);
   overflow: hidden;
@@ -720,7 +752,7 @@ button {
 .product-modal-desc {
   font-size: 14.5px;
   line-height: 1.6;
-  color: rgba(15, 42, 46, 0.75);
+  color: rgba(22, 74, 90, 0.75);
   margin: 0;
 }
 
@@ -740,7 +772,7 @@ button {
 }
 
 .spec-row dt {
-  color: rgba(15, 42, 46, 0.6);
+  color: rgba(22, 74, 90, 0.6);
 }
 
 .spec-row dd {
@@ -753,7 +785,7 @@ button {
   margin-top: auto;
   padding: 14px;
   font-size: 15px;
-  border-radius: 3px;
+  border-radius: 8px;
 }
 
 /* ---------- Modal tabs ---------- */
@@ -769,7 +801,7 @@ button {
   padding: 8px 0;
   font-size: 13px;
   font-weight: 500;
-  color: rgba(15, 42, 46, 0.55);
+  color: rgba(22, 74, 90, 0.55);
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
 }
@@ -807,12 +839,12 @@ button {
   margin: 0;
   font-size: 13.5px;
   line-height: 1.55;
-  color: rgba(15, 42, 46, 0.75);
+  color: rgba(22, 74, 90, 0.75);
 }
 
 .reviews-empty {
   font-size: 13px;
-  color: rgba(15, 42, 46, 0.55);
+  color: rgba(22, 74, 90, 0.55);
 }
 
 /* ---------- Reassurance strip ---------- */
@@ -829,7 +861,7 @@ button {
   align-items: center;
   gap: 6px;
   font-size: 11.5px;
-  color: rgba(15, 42, 46, 0.65);
+  color: rgba(22, 74, 90, 0.65);
 }
 
 @media (max-width: 640px) {
